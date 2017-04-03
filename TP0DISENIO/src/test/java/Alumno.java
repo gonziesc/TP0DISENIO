@@ -24,24 +24,27 @@ import com.sun.jersey.api.client.WebResource.Builder;
 @Observable
 
 public class Alumno {
-	private double legajo;
+	private double code;
 	private String first_name ;
 	private String last_name;
 	private String github_user;
-	private String token;
+	private String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxMTEyMjIzMzMiLCJybmQiOiJ5SXNmZFIwN2lIR3BRRmVjYU9KT2VRPT0ifQ.9pVJGUXhrJPQ-TptNCt971l0h_1dWqWgMrHAWXJchho";
 	private List<Asignacion> assignments;
 	
 	public Alumno(double id,String nombre,String apellido,String git){
-		legajo = id;
+		code = id;
 		first_name= nombre;
 		last_name = apellido;
 		github_user = git;
 	}
-	public Alumno(){
+
+    
+	public Alumno() {
 		
 	}
-    
-	public Alumno Autenticarse(){
+
+
+	public void Autenticarse(){
 		 Gson gson = new Gson();
 		 final String json=  Client.create()
 				 .resource("http://notitas.herokuapp.com")
@@ -50,7 +53,10 @@ public class Alumno {
 				 .accept(MediaType.APPLICATION_JSON) 
 				 .get(String.class);
 		 Alumno alumnito = gson.fromJson(json, Alumno.class);
-		 return alumnito;
+		 code = alumnito.code;
+			first_name= alumnito.first_name;
+			last_name = alumnito.last_name;
+			github_user = alumnito.github_user;
 	}
 	
 	public List<Asignacion> asignacionesAlumno(){
@@ -81,16 +87,24 @@ public class Alumno {
 		         .put(String.class, result);     
 	}
 
-	public double getLegajo() {
-		return legajo;
+	public double getCode() {
+		return code;
 	}
 
-	public void setLegajo(double legajo) {
-		this.legajo = legajo;
+	public void setCode(double legajo) {
+		this.code = legajo;
 	}
 
 	public String getFirst_name() {
 		return first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+	
+	public String getGithub_user() {
+		return github_user;
 	}
 
 	public void setFirst_name(String first_name) {
