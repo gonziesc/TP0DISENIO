@@ -34,7 +34,7 @@ public class AutenticacionWindow extends MainWindow<Alumno>{
 					
 		new Button(mainPanel)
 			.setCaption("Loguearse")
-			.onClick(() -> getModelObject().Autenticarse());
+			.onClick(() -> getModelObject().Autenticarse()());
 		
 		new Button(mainPanel)
 			.setCaption("Actualizar datos")
