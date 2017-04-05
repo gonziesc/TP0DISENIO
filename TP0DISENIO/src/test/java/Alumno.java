@@ -1,13 +1,16 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
+
 import org.uqbar.commons.utils.Observable;
 import org.json.JSONObject;
 
@@ -29,7 +32,9 @@ public class Alumno {
 	private String last_name;
 	private String github_user;
 	private String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxMTEyMjIzMzMiLCJybmQiOiJ5SXNmZFIwN2lIR3BRRmVjYU9KT2VRPT0ifQ.9pVJGUXhrJPQ-TptNCt971l0h_1dWqWgMrHAWXJchho";
-	private List<Asignacion> assignments;
+	public ArrayList<Asignacion> assignments;
+	private List<Asignacion> materias;
+	private Asignacion unaAsignacion;
 	
 	public Alumno(double id,String nombre,String apellido,String git){
 		code = id;
@@ -59,18 +64,21 @@ public class Alumno {
 			github_user = alumnito.github_user;
 	}
 	
-	public List<Asignacion> asignacionesAlumno(){
+	public ArrayList<Asignacion> asignacionesAlumno(){
 		Gson gson = new Gson();
 		final String json=  Client.create()
-		         .resource("http://notitas.herokuapp.com/student")
+				.resource("http://notitas.herokuapp.com/student")
 		         .path("assignments")
 		         .header("Authorization", token)
 		         .accept(MediaType.APPLICATION_JSON) 
 		         .get(String.class);
 		Alumno alumno = gson.fromJson(json, Alumno.class);
-		List<Asignacion> asignaciones = alumno.getAssignments();
+		ArrayList<Asignacion> asignaciones = alumno.getAssignments();
+		materias = alumno.getAssignments();
+		for (Asignacion item : asignaciones) {   
+		    System.out.println(item.getTitle() + " " + item.getDescription());
+		}
 		return asignaciones;
-		
 	}
 
 	
@@ -119,11 +127,31 @@ public class Alumno {
 		this.token = token;
 	}
 
-	public List<Asignacion> getAssignments() {
+	public ArrayList<Asignacion> getAssignments() {
 		return assignments;
 	}
 
-	public void setAssignments(List<Asignacion> assignments) {
+	public void setAssignments(ArrayList<Asignacion> assignments) {
 		this.assignments = assignments;
+	}
+
+
+	public Asignacion getUnaAsignacion() {
+		return unaAsignacion;
+	}
+
+
+	public void setUnaAsignacion(Asignacion unaAsignacion) {
+		this.unaAsignacion = unaAsignacion;
+	}
+
+
+	public List<Asignacion> getMaterias() {
+		return materias;
+	}
+
+
+	public void setMaterias(List<Asignacion> materias) {
+		this.materias = materias;
 	}
 }

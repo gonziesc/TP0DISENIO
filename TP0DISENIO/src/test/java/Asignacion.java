@@ -1,23 +1,17 @@
-import java.util.List;
+import java.util.ArrayList;
+
 
 
 public class Asignacion {
-	private Tarea unaTarea;
-	private List<Nota> notas;
+	private Integer id;
 	private String title;
-	
-	
-	public Tarea getUnaTarea() {
-		return unaTarea;
+	private String description;
+	private ArrayList<Nota> grades;
+	public Integer getId() {
+		return id;
 	}
-	public void setUnaTarea(Tarea unaTarea) {
-		this.unaTarea = unaTarea;
-	}
-	public List<Nota> getNotas() {
-		return notas;
-	}
-	public void setNotas(List<Nota> notas) {
-		this.notas = notas;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getTitle() {
 		return title;
@@ -25,4 +19,19 @@ public class Asignacion {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public ArrayList<Nota> getGrades() {
+		return grades;
+	}
+	public void setGrades(ArrayList<Nota> grades) {
+		this.grades = grades;
+	}
+	
+	
+	
 }

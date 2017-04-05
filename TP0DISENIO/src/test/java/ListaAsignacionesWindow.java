@@ -16,7 +16,7 @@ import org.uqbar.arena.widgets.tables.Table;
 
 public class ListaAsignacionesWindow extends Dialog<AsignacionesViewModel>
 {
-	// el problema de que no aparezcan asignaciones es si aca se pone el new asignacionesViewm
+	
 	public ListaAsignacionesWindow(WindowOwner owner, AsignacionesViewModel avm ) {
 		super(owner,avm);
 		// TODO Auto-generated constructor stub

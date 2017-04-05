@@ -1,5 +1,5 @@
 
-public class notaNumerica implements Nota {
+public class notaNumerica implements TipoNota {
 	private int nota;
 
 	public int getNota() {

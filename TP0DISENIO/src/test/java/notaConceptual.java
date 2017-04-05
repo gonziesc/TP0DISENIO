@@ -1,5 +1,5 @@
 
-public class notaConceptual implements Nota {
+public class notaConceptual implements TipoNota {
 	private String nota;
 
 	public String getNota() {

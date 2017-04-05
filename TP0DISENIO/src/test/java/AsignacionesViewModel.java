@@ -1,5 +1,13 @@
-import org.uqbar.arena.widgets.List;
+import java.util.ArrayList;
+
+import javax.ws.rs.core.MediaType;
+
+import java.util.List;
+
 import org.uqbar.commons.utils.Observable;
+
+import com.google.gson.Gson;
+import com.sun.jersey.api.client.Client;
 
 
 @Observable
@@ -9,12 +17,22 @@ import org.uqbar.commons.utils.Observable;
 		private Asignacion unaAsignacion;
 		
 		
-		public AsignacionesViewModel(List<Asignacion> assignments){
-			this.assignments = assignments;
+		public AsignacionesViewModel(Alumno unAlumno){
+			Gson gson = new Gson();
+			final String json=  Client.create()
+					.resource("http://notitas.herokuapp.com/student")
+			         .path("assignments")
+			         .header("Authorization", unAlumno.getToken())
+			         .accept(MediaType.APPLICATION_JSON) 
+			         .get(String.class);
+			Alumno alumno = gson.fromJson(json, Alumno.class);
+			for (Asignacion item : alumno.getAssignments()) {   
+			    System.out.println(item.getTitle() + " " + item.getDescription());
+			}
+			this.assignments = alumno.getAssignments();
 			
 		}
 		
-
 
 		public void setassignments(List<Asignacion> assignments){
 			this.assignments = assignments;

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import org.uqbar.arena.layout.VerticalLayout;
@@ -6,6 +8,7 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.List;
 import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
@@ -40,6 +43,11 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 		new Button(mainPanel)
 		.setCaption("Obtener asignaciones")
 		.onClick(this::obtenerAsignaciones);
+		
+		new Label(mainPanel).setText("Asignaciones");
+		Selector<Asignacion> selectorAsignacion = new Selector<Asignacion>(mainPanel).allowNull(true);
+		selectorAsignacion.bindItemsToProperty("materias");
+		selectorAsignacion.bindValueToProperty("unaAsignacion");
 	}
 
 	
@@ -51,6 +59,7 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 	
 	public void loguearse(){
 		getModelObject().Autenticarse();
+		getModelObject().asignacionesAlumno();
 		JOptionPane.showMessageDialog(null, getModelObject().getFirst_name());
 		Dialog<?> dialog = new DatosWindow(this,  getModelObject());
 		dialog.open();
@@ -60,10 +69,10 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 	public void obtenerAsignaciones(){
 			//List<Asignacion> assignments = (List<Asignacion>) getModelObject().asignacionesAlumno();
 			//avm.setassignments((List<Asignacion>) assignments);
-			AsignacionesViewModel avm = new AsignacionesViewModel((List<Asignacion>) (getModelObject().asignacionesAlumno()));
-			Dialog<?> dialog = new ListaAsignacionesWindow(this,avm);
-			dialog.open();
-			dialog.onAccept(() -> {});
+			//AsignacionesViewModel avm = new AsignacionesViewModel((getModelObject()));
+			//Dialog<?> dialog = new ListaAsignacionesWindow(this,avm);
+			//dialog.open();
+			//dialog.onAccept(() -> {});
 		}
 		
 		
