@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
+import org.uqbar.arena.widgets.List;
 import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
@@ -35,6 +36,10 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 		new Button(mainPanel)
 			.setCaption("Actualizar datos")
 			.onClick(this::actualizarDatos);
+		
+		new Button(mainPanel)
+		.setCaption("Obtener asignaciones")
+		.onClick(this::obtenerAsignaciones);
 	}
 
 	
@@ -51,6 +56,17 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 		dialog.open();
 		dialog.onAccept(() -> {});
 	}
+	
+	public void obtenerAsignaciones(){
+			//List<Asignacion> assignments = (List<Asignacion>) getModelObject().asignacionesAlumno();
+			//avm.setassignments((List<Asignacion>) assignments);
+			AsignacionesViewModel avm = new AsignacionesViewModel((List<Asignacion>) (getModelObject().asignacionesAlumno()));
+			Dialog<?> dialog = new ListaAsignacionesWindow(this,avm);
+			dialog.open();
+			dialog.onAccept(() -> {});
+		}
+		
+		
 	
 	
 
