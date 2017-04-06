@@ -1,21 +1,17 @@
 package view;
 import org.uqbar.arena.layout.ColumnLayout;
-import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
-import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
-import org.uqbar.arena.windows.MainWindow;
-import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import viewmodel.AutenticacionViewModel;
-import model.Alumno;
 
 
 
+
+@SuppressWarnings("serial")
 public class DatosWindow  extends Dialog<AutenticacionViewModel>{
 
 	public DatosWindow(WindowOwner parent, AutenticacionViewModel unVM) {

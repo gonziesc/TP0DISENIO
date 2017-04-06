@@ -1,7 +1,6 @@
 package view;
 
 
-import javax.swing.JOptionPane;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;

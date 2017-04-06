@@ -1,29 +1,16 @@
 package model;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 
-import javax.swing.JOptionPane;
-import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
 
 import org.uqbar.commons.utils.Observable;
-import org.json.JSONObject;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.WebResource.Builder;
+
 
 @Observable
 
@@ -51,7 +38,7 @@ public class Alumno {
 	public void modificarDatos(Alumno alumno) {
 		Gson gson = new Gson();
 		String result = gson.toJson(alumno);
-		final String json=  Client.create()
+		Client.create()
 		         .resource("http://notitas.herokuapp.com")
 		         .path("student")
 		         .header("Authorization", alumno.getToken())
