@@ -1,13 +1,17 @@
+package model;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
+
 import org.uqbar.commons.utils.Observable;
 import org.json.JSONObject;
 
@@ -26,10 +30,12 @@ import com.sun.jersey.api.client.WebResource.Builder;
 public class Alumno {
 	private double code;
 	private String first_name ;
-	private String last_name;
+	private String last_name ;
 	private String github_user;
 	private String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxMTEyMjIzMzMiLCJybmQiOiJ5SXNmZFIwN2lIR3BRRmVjYU9KT2VRPT0ifQ.9pVJGUXhrJPQ-TptNCt971l0h_1dWqWgMrHAWXJchho";
-	private List<Asignacion> assignments;
+	public ArrayList<Asignacion> assignments;
+	private List<Asignacion> materias;
+	private Asignacion unaAsignacion;
 	
 	public Alumno(double id,String nombre,String apellido,String git){
 		code = id;
@@ -38,54 +44,47 @@ public class Alumno {
 		github_user = git;
 	}
 
-    
-	public Alumno() {
-		
-	}
-
-
-	public void Autenticarse(){
-		 Gson gson = new Gson();
+	public Alumno (){}
+	
+	public Alumno obtenerDatos(String token, String _path){
+		Gson gson = new Gson();
 		 final String json=  Client.create()
 				 .resource("http://notitas.herokuapp.com")
-				 .path("student")
+				 .path(_path)
 				 .header("Authorization", token)
 				 .accept(MediaType.APPLICATION_JSON) 
 				 .get(String.class);
-		 Alumno alumnito = gson.fromJson(json, Alumno.class);
-		 code = alumnito.code;
-			first_name= alumnito.first_name;
-			last_name = alumnito.last_name;
-			github_user = alumnito.github_user;
+		 return gson.fromJson(json, Alumno.class);
+	}
+	public void Autenticarse(){
+		Alumno alumnito = this.obtenerDatos(token, "student");
+		code = alumnito.code;
+		first_name= alumnito.first_name;
+		last_name = alumnito.last_name;
+		github_user = alumnito.github_user;
 	}
 	
-	public List<Asignacion> asignacionesAlumno(){
-		Gson gson = new Gson();
-		final String json=  Client.create()
-		         .resource("http://notitas.herokuapp.com/student")
-		         .path("assignments")
-		         .header("Authorization", token)
-		         .accept(MediaType.APPLICATION_JSON) 
-		         .get(String.class);
-		Alumno alumno = gson.fromJson(json, Alumno.class);
-		List<Asignacion> asignaciones = alumno.getAssignments();
+	public ArrayList<Asignacion> asignacionesAlumno(){
+		Alumno alumno = this.obtenerDatos(token, "student/assignments");
+		ArrayList<Asignacion> asignaciones = alumno.getAssignments();
+		materias = alumno.getAssignments();
+		for (Asignacion item : asignaciones) {   
+		    System.out.println(item.getTitle() + " " + item.getDescription());
+		}
 		return asignaciones;
-		
 	}
-
 	
-	public void RealizarCambio(){
-		Alumno alumnito = new Alumno(111222333,"leonel","messi" ,"pechofrio"); //<---es para probar
+	public void modificarDatos(Alumno alumno) {
 		Gson gson = new Gson();
-		String result = gson.toJson(alumnito);
-		
+		String result = gson.toJson(alumno);
 		final String json=  Client.create()
 		         .resource("http://notitas.herokuapp.com")
 		         .path("student")
-		         .header("Authorization", token)
+		         .header("Authorization", alumno.getToken())
 		         .accept(MediaType.APPLICATION_JSON) 
-		         .put(String.class, result);     
+		         .put(String.class, result);
 	}
+
 
 	public double getCode() {
 		return code;
@@ -119,11 +118,40 @@ public class Alumno {
 		this.token = token;
 	}
 
-	public List<Asignacion> getAssignments() {
+	public ArrayList<Asignacion> getAssignments() {
 		return assignments;
 	}
 
-	public void setAssignments(List<Asignacion> assignments) {
+	public void setAssignments(ArrayList<Asignacion> assignments) {
 		this.assignments = assignments;
 	}
+
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public void setGithub_user(String github_user) {
+		this.github_user = github_user;
+	}
+
+	public Asignacion getUnaAsignacion() {
+		return unaAsignacion;
+	}
+
+
+	public void setUnaAsignacion(Asignacion unaAsignacion) {
+		this.unaAsignacion = unaAsignacion;
+	}
+
+
+	public List<Asignacion> getMaterias() {
+		return materias;
+	}
+
+
+	public void setMaterias(List<Asignacion> materias) {
+		this.materias = materias;
+	}
 }
+	

@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+#Wed Apr 05 20:05:16 ART 2017
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
+>>>>>>> 03d18d544b042f71d2db8852d3b8ef33a20adead
 eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
 org.eclipse.jdt.core.compiler.compliance=1.8
