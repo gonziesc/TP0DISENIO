@@ -11,14 +11,15 @@ import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import viewmodel.AutenticacionViewModel;
 import model.Alumno;
 
 
 
-public class DatosWindow  extends Dialog<Alumno>{
+public class DatosWindow  extends Dialog<AutenticacionViewModel>{
 
-	public DatosWindow(WindowOwner parent, Alumno unAlumno) {
-		super(parent,unAlumno);
+	public DatosWindow(WindowOwner parent, AutenticacionViewModel unVM) {
+		super(parent,unVM);
 		// TODO Auto-generated constructor stub
 	}
 	@Override
@@ -45,10 +46,7 @@ public class DatosWindow  extends Dialog<Alumno>{
 		
 	}
 	
-	protected void executeTask() {
-		getModelObject().setAssignments(getModelObject().asignacionesAlumno());
-		super.executeTask();
-	}
+	
 	@Override
 	protected void createFormPanel(Panel arg0) {
 		// TODO Auto-generated method stub

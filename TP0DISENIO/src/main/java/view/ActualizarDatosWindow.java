@@ -40,8 +40,8 @@ public class ActualizarDatosWindow extends Dialog<Alumno> {
 	public void actualizarDatos(){
 		getModelObject().modificarDatos(getModelObject());
 		this.close();
-		Dialog<?> dialog = new DatosWindow(this, getModelObject());
-		dialog.open();
-		dialog.onAccept(() -> {});
+		//Dialog<?> dialog = new DatosWindow(this, getModelObject());
+		//dialog.open();
+		//dialog.onAccept(() -> {});
 	}
 }

@@ -1,5 +1,5 @@
 package view;
-import java.util.ArrayList;
+
 
 import javax.swing.JOptionPane;
 
@@ -7,23 +7,24 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.Selector;
+
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.lacar.ui.model.bindings.Binding;
 
-import model.Alumno;
+
+import viewmodel.AutenticacionViewModel;
+
 import model.Asignacion;
 
 @SuppressWarnings("serial")
-public class AutenticacionWindow extends SimpleWindow<Alumno>{
+public class AutenticacionWindow extends SimpleWindow<AutenticacionViewModel>{
 	
 	public AutenticacionWindow(WindowOwner parent) {
-		super(parent,new Alumno());
+		super(parent,new AutenticacionViewModel());
 		// TODO Auto-generated constructor stub
 	}
 
@@ -60,10 +61,7 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 		
 		Column<Asignacion> columnaGrades = new Column<Asignacion>(tablaEvaluaciones);
 		columnaGrades.setTitle("Notas").bindContentsToProperty("grades");
-		/*Selector<Asignacion> selectorAsignacion = new Selector<Asignacion>(mainPanel).allowNull(true);
-		selectorAsignacion.bindValueToProperty("unaAsignacion");
-		Binding binding = selectorAsignacion.bindItemsToProperty("materias");
-		binding.adaptWith(Asignacion.class, "description");*/
+		
 		
 	}
 	
@@ -75,8 +73,6 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 	
 	public void loguearse(){
 		getModelObject().Autenticarse();
-		getModelObject().asignacionesAlumno();
-		JOptionPane.showMessageDialog(null, getModelObject().getFirst_name());
 		Dialog<?> dialog = new DatosWindow(this, getModelObject());
 		dialog.open();
 		dialog.onAccept(() -> {});

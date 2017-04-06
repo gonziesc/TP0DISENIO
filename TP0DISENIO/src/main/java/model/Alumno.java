@@ -46,33 +46,7 @@ public class Alumno {
 
 	public Alumno (){}
 	
-	public Alumno obtenerDatos(String token, String _path){
-		Gson gson = new Gson();
-		 final String json=  Client.create()
-				 .resource("http://notitas.herokuapp.com")
-				 .path(_path)
-				 .header("Authorization", token)
-				 .accept(MediaType.APPLICATION_JSON) 
-				 .get(String.class);
-		 return gson.fromJson(json, Alumno.class);
-	}
-	public void Autenticarse(){
-		Alumno alumnito = this.obtenerDatos(token, "student");
-		code = alumnito.code;
-		first_name= alumnito.first_name;
-		last_name = alumnito.last_name;
-		github_user = alumnito.github_user;
-	}
 	
-	public ArrayList<Asignacion> asignacionesAlumno(){
-		Alumno alumno = this.obtenerDatos(token, "student/assignments");
-		ArrayList<Asignacion> asignaciones = alumno.getAssignments();
-		materias = alumno.getAssignments();
-		for (Asignacion item : asignaciones) {   
-		    System.out.println(item.getTitle() + " " + item.getDescription());
-		}
-		return asignaciones;
-	}
 	
 	public void modificarDatos(Alumno alumno) {
 		Gson gson = new Gson();
