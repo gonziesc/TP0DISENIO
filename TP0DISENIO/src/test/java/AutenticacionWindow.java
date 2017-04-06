@@ -47,7 +47,7 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 	public void loguearse(){
 		getModelObject().Autenticarse();
 		JOptionPane.showMessageDialog(null, getModelObject().getFirst_name());
-		Dialog<?> dialog = new DatosWindow(this,  getModelObject());
+		Dialog<?> dialog = new DatosWindow(this, getModelObject());
 		dialog.open();
 		dialog.onAccept(() -> {});
 	}
