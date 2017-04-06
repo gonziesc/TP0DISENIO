@@ -1,3 +1,4 @@
+package view;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -8,6 +9,8 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+
+import model.Alumno;
 
 
 public class DatosWindow  extends Dialog<Alumno>{

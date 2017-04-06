@@ -1,3 +1,4 @@
+package model;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -43,12 +44,8 @@ public class Alumno {
 		github_user = git;
 	}
 
-    
-	public Alumno() {
-		
-	}
-
-
+	public Alumno (){}
+	
 	public void Autenticarse(){
 		 Gson gson = new Gson();
 		 final String json=  Client.create()

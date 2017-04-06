@@ -1,4 +1,4 @@
-
+package model;
 public class notaConceptual implements TipoNota {
 	private String nota;
 

@@ -1,4 +1,4 @@
-
+package model;
 public class Nota {
 	private Integer id;
 	private String value;

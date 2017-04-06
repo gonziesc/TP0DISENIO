@@ -1,3 +1,4 @@
+package view;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -16,6 +17,9 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+
+import model.Alumno;
+import model.Asignacion;
 
 @SuppressWarnings("serial")
 public class AutenticacionWindow extends SimpleWindow<Alumno>{
@@ -40,9 +44,6 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 			.setCaption("Actualizar datos")
 			.onClick(this::actualizarDatos);
 		
-		new Button(mainPanel)
-		.setCaption("Obtener asignaciones")
-		.onClick(this::obtenerAsignaciones);
 		
 		new Label(mainPanel).setText("Asignaciones");
 		Selector<Asignacion> selectorAsignacion = new Selector<Asignacion>(mainPanel).allowNull(true);
@@ -65,18 +66,6 @@ public class AutenticacionWindow extends SimpleWindow<Alumno>{
 		dialog.open();
 		dialog.onAccept(() -> {});
 	}
-	
-	public void obtenerAsignaciones(){
-			//List<Asignacion> assignments = (List<Asignacion>) getModelObject().asignacionesAlumno();
-			//avm.setassignments((List<Asignacion>) assignments);
-			//AsignacionesViewModel avm = new AsignacionesViewModel((getModelObject()));
-			//Dialog<?> dialog = new ListaAsignacionesWindow(this,avm);
-			//dialog.open();
-			//dialog.onAccept(() -> {});
-		}
-		
-		
-	
 	
 
 	@Override

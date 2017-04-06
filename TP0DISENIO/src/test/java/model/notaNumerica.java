@@ -1,4 +1,4 @@
-
+package model;
 public class notaNumerica implements TipoNota {
 	private int nota;
 

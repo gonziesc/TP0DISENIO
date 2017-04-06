@@ -1,3 +1,4 @@
+package viewmodel;
 import java.util.ArrayList;
 
 import javax.ws.rs.core.MediaType;
@@ -8,6 +9,9 @@ import org.uqbar.commons.utils.Observable;
 
 import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
+
+import model.Alumno;
+import model.Asignacion;
 
 
 @Observable
